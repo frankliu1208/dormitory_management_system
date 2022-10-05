@@ -4,10 +4,12 @@ import com.southwind.entity.DormitoryAdmin;
 
 import java.util.List;
 
+
 public interface DormitoryAdminMapper {
 
     // search for all the data
     public List<DormitoryAdmin> list();
+
     public List<DormitoryAdmin> searchByUsername(String value);
     public List<DormitoryAdmin> searchByName(String value);
     public List<DormitoryAdmin> searchByTelephone(String value);

@@ -4,13 +4,16 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+    <!--    When using（Graphic User Interface）tool，assign the name of web application-->
     <display-name>Archetype Created Web Application</display-name>
 
-    <!-- Spring -->
+    <!-- initialize the parameters,  param-name is the key, param-value is the value -->
+    <!--    in servlet，can use this.getServletContext().getInitParameter(“key”) to get the value  -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring.xml</param-value>
     </context-param>
+
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -24,13 +27,13 @@
             <param-value>classpath:springmvc.xml</param-value>
         </init-param>
     </servlet>
-
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!-- 字符编码过滤器 -->
+
+    <!-- encoding filter -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -47,12 +50,15 @@
             <param-value>true</param-value>
         </init-param>
     </filter>
+
+<!--  filter-name shall be the same with filter tag  -->
+<!--    mapper of filter，used aligned with filter tag， first configure filter, then configure filter-mapping-->
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- 加载静态资源 -->
+    <!-- load static resources -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>*.css</url-pattern>

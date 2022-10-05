@@ -22,7 +22,7 @@ public class BuildingController {
     @GetMapping("/list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("buildingmanager");
+        modelAndView.setViewName("WEB-INF/buildingmanager");
         modelAndView.addObject("list", this.buildingService.list());
 //        admin related info send to front page
         modelAndView.addObject("dormitoryAdminList", this.dormitoryAdminService.list());
@@ -32,7 +32,7 @@ public class BuildingController {
     @PostMapping("/search")
     public ModelAndView search(String key,String value){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("buildingmanager");
+        modelAndView.setViewName("WEB-INF/buildingmanager");
         modelAndView.addObject("list", this.buildingService.search(key, value));
         modelAndView.addObject("dormitoryAdminList", this.dormitoryAdminService.list());
         return modelAndView;

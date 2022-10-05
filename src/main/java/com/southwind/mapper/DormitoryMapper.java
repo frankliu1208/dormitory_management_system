@@ -5,7 +5,8 @@ import com.southwind.entity.Dormitory;
 import java.util.List;
 
 public interface DormitoryMapper {
-    // 可用的宿舍，还有空床位
+
+    // get all the dormitory which has the empty bed
     public List<Dormitory> availableList();
 
     // decrease the number of available bed

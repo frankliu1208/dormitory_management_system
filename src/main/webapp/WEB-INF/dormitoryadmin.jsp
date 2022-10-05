@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%-- this is the main page when the dormitory administrator logs in successfully, similar with systemadmin.jsp  --%>
     <meta charset="utf-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
@@ -21,6 +22,7 @@
     </script>
 </head>
 <body>
+<%-- this is the main page when the dormitory administrator logs in successfully, similar with systemadmin.jsp  --%>
 <nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
         <ul class="nav navbar-nav navbar-left">

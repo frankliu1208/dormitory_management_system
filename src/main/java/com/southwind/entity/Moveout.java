@@ -3,7 +3,7 @@ package com.southwind.entity;
 import lombok.Data;
 
 
-// used for move-out register and move-out record
+// entity class used for move-out register and move-out record
 @Data
 public class Moveout {
     private Integer id;

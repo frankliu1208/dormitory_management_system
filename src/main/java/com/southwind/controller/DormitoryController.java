@@ -32,7 +32,7 @@ public class DormitoryController {
     @GetMapping("/list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("dormitorymanager");
+        modelAndView.setViewName("WEB-INF/dormitorymanager");
         modelAndView.addObject("list", this.dormitoryService.list());
         modelAndView.addObject("buildingList", this.buildingService.list());
         return modelAndView;
@@ -41,7 +41,7 @@ public class DormitoryController {
     @PostMapping("/search")
     public ModelAndView search(String key,String value){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("dormitorymanager");
+        modelAndView.setViewName("WEB-INF/dormitorymanager");
         modelAndView.addObject("list", this.dormitoryService.search(key, value));
         modelAndView.addObject("buildingList", this.buildingService.list());
         return modelAndView;

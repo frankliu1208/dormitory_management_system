@@ -43,7 +43,7 @@
                         <div class="form-group " style="margin-left: 48px">
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addUserModal">
 										<span style="margin-right: 5px" class="" aria-hidden="true">
-											<i class="fa fa-user-plus">Add building information</i>
+											<i class="fa fa-user-plus fa-sm">Add building information</i>
 											</span>
                             </button>
                         </div>

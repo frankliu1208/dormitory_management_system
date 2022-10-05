@@ -1,7 +1,8 @@
 package com.southwind.entity;
 
 import lombok.Data;
-// student management back end entity class
+
+// student management  entity class
 @Data
 public class Student {
     private Integer id;
@@ -10,7 +11,7 @@ public class Student {
     private String gender;
     private Integer dormitoryId;
     private Integer oldDormitoryId;
-    private String dormitoryName; // not exist in database
+    private String dormitoryName;  // not exist in database
     private String state;
     private String createDate;
 }

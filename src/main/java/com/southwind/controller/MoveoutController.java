@@ -22,7 +22,7 @@ public class MoveoutController {
     @GetMapping("/list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("moveoutregister");
+        modelAndView.setViewName("WEB-INF/moveoutregister");
         modelAndView.addObject("list", this.studentService.moveoutList());
         return modelAndView;
     }
@@ -30,7 +30,7 @@ public class MoveoutController {
     @PostMapping("/search")
     public ModelAndView search(String key,String value){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("moveoutregister");
+        modelAndView.setViewName("WEB-INF/moveoutregister");
         modelAndView.addObject("list", this.studentService.searchForMoveoutList(key, value));
         return modelAndView;
     }
@@ -44,7 +44,7 @@ public class MoveoutController {
     @GetMapping("/record")
     public ModelAndView record(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("moveoutrecord");
+        modelAndView.setViewName("WEB-INF/moveoutrecord");
         modelAndView.addObject("list", this.moveoutService.list());
         return modelAndView;
     }
@@ -52,7 +52,7 @@ public class MoveoutController {
     @PostMapping("/recordSearch")
     public ModelAndView recordSearch(String key,String value){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("moveoutrecord");
+        modelAndView.setViewName("WEB-INF/moveoutrecord");
         modelAndView.addObject("list", this.moveoutService.search(key, value));
         return modelAndView;
     }

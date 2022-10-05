@@ -27,10 +27,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> search(String key, String value) {
-        if(value.equals("")) return this.studentMapper.list();
+        if(value.equals("")) return this.studentMapper.list(); // if value is empty, search for the whole list
         List<Student> list = null;
         switch (key){
-//            this case is aligned with studentmanager.jsp L 31-32, number means that user chooses "student ID"
+//            this case is aligned with studentmanager.jsp  around L31-34, option value is number or name, number means that user chooses "student ID"
             case "number":
                 list = this.studentMapper.searchByNumber(value);
                 break;
@@ -50,7 +50,7 @@ public class StudentServiceImpl implements StudentService {
         student.setCreateDate(format.format(date));
         try {
             this.studentMapper.save(student);  // add the student to the dormitory
-            this.dormitoryMapper.subAvailable(student.getDormitoryId());  // decrease the number of available bed
+            this.dormitoryMapper.subAvailable(student.getDormitoryId());  // decrease the number of available bed, because we add a new student to the dorm
         } catch (Exception e) {
             e.printStackTrace();
         }

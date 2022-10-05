@@ -13,8 +13,8 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Dormitory management system</title>
 </head>
-<body>
 
+<body>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10">

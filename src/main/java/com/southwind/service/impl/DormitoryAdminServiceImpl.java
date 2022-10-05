@@ -25,6 +25,7 @@ public class DormitoryAdminServiceImpl implements DormitoryAdminService {
         if(key.equals("")) return this.dormitoryAdminMapper.list();
         List<DormitoryAdmin> list = null;
         switch (key){
+        // because it is inaccurate search,  there are 3 options, user will choose one in adminmanager.jsp L32 - 34
             case "username":
                 list = this.dormitoryAdminMapper.searchByUsername(value);
                 break;

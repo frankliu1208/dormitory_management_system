@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-// used for student management
+// student management functionality
 @Controller
 @RequestMapping("/student")
 public class StudentController {
@@ -23,14 +23,13 @@ public class StudentController {
     @Autowired
     private DormitoryService dormitoryService;
 
-
-    // 若处理器方法处理完后，需要跳转到其它资源，且又要在跳转的资源间传递数据，此时 处理器方法返回 ModelAndView 比较好
+    // display the overall list
     @GetMapping("/list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("studentmanager");  // go to studentmanager.jsp
+        modelAndView.setViewName("WEB-INF/studentmanager");  // go to studentmanager.jsp
         modelAndView.addObject("list", this.studentService.list());
-//        add available dormitory info. used for the updating page
+        //  add available dormitory info. this is used for the updating modal
         modelAndView.addObject("dormitoryList", this.dormitoryService.availableList());
         return modelAndView;
     }
@@ -38,12 +37,13 @@ public class StudentController {
     @PostMapping("/search")
     public ModelAndView search(String key,String value){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("studentmanager");
+        modelAndView.setViewName("WEB-INF/studentmanager");
         modelAndView.addObject("list", this.studentService.search(key, value));
         modelAndView.addObject("dormitoryList", this.dormitoryService.availableList());
         return modelAndView;
     }
 
+    // adding functionality,  comes from studentmanager.jsp L117
     @PostMapping("/save")
     public String save(Student student){
         this.studentService.save(student);

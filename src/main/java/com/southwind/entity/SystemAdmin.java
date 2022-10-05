@@ -3,7 +3,7 @@ package com.southwind.entity;
 import lombok.Data;
 
 
-// administrator class,
+// System administrator class
 // use lombok, no need to get/set method
 @Data
 public class SystemAdmin {

@@ -13,25 +13,25 @@
     <!-- introduce font-awesome -->
     <script src="https://kit.fontawesome.com/c2a154e786.js" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<%--     <%=request.getContextPath()%>是为了解决相对路径的问题，可返回站点的根路径。  --%>
+<%--  introduce style.css file,  request.getContextPath() returns the root path of the url   --%>
     <link rel="stylesheet" href="<%= request.getContextPath()%>/css/style.css">
 </head>
 
 <body>
 <div class="container">
     <div class="form row" style="height: 300px;">
+        <%--  the form will send to AccountController      --%>
         <form class="form-horizontal col-md-offset-3" id="login_form" action="/account/login" method="post">
             <h3 class="form-title">User Login</h3>
             <div class="col-md-9">
                 <div class="form-group">
-                    <i class="fa fa-user fa-lg"></i>
-                    <span style="color: red;font-size: 13px;margin-left: -17px;">${usernameError}</span>
+                    <i class="fa-solid fa-user fa-sm"></i>
+                    <span style="color: red;font-size: 13px;  margin-left: -2px;">${usernameError}</span>
                     <input class="form-control required" required placeholder="Please enter the username" type="text" name="username"/>
                 </div>
                 <div class="form-group">
-                    <i class="fa fa-lock fa-lg"></i>
-                    <span style="color: red;font-size: 13px;margin-left: -17px;">${passwordError}</span>
+                    <i class="fa-solid fa-lock fa-sm"></i>
+                    <span style="color: red;font-size: 13px;margin-left: -2px;">${passwordError}</span>
                     <input class="form-control required" required placeholder="Please enter the password" type="password" name="password"/>
                 </div>
                 <div class="form-group">

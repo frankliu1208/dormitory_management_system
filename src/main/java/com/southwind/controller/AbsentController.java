@@ -28,11 +28,11 @@ public class AbsentController {
     @Autowired
     private StudentService studentService;
 
-//    display the overall list
+    //    display the overall list
     @GetMapping("/list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("absentrecord");
+        modelAndView.setViewName("WEB-INF/absentrecord");
         modelAndView.addObject("list", this.absentService.list());
         return modelAndView;
     }
@@ -41,7 +41,7 @@ public class AbsentController {
     @PostMapping("/search")
     public ModelAndView search(String key,String value){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("absentrecord");
+        modelAndView.setViewName("WEB-INF/absentrecord");
         modelAndView.addObject("list", this.absentService.search(key, value));
         return modelAndView;
     }
@@ -49,7 +49,7 @@ public class AbsentController {
     @GetMapping("/init")
     public ModelAndView init(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("absentregister");
+        modelAndView.setViewName("WEB-INF/absentregister");
         List<Building> buildingList = this.buildingService.list();
         modelAndView.addObject("buildingList", buildingList);
         List<Dormitory> dormitoryList = this.dormitoryService.findByBuildingId(buildingList.get(0).getId());
@@ -59,7 +59,7 @@ public class AbsentController {
         return modelAndView;
     }
 
-    //
+
     @PostMapping("/save")
     public String save(Absent absent, HttpSession session){
         DormitoryAdmin dormitoryAdmin = (DormitoryAdmin) session.getAttribute("dormitoryAdmin");

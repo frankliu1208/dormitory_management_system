@@ -5,7 +5,7 @@ import com.southwind.entity.Student;
 
 import java.util.List;
 
-// for student management
+// functions:  student management
 public interface StudentService {
     public List<Student> list();
     public List<Student> search(String key,String value);

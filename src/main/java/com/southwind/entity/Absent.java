@@ -2,6 +2,7 @@ package com.southwind.entity;
 
 import lombok.Data;
 
+// entity class regarding the topic absence information
 @Data
 public class Absent {
     private Integer id;

@@ -4,35 +4,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<%--    home page,  list at the right side  --%>
+<%--   front-end page for "Dormitory management" section --%>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
     <script src="https://kit.fontawesome.com/c2a154e786.js" crossorigin="anonymous"></script>
+
+<%--    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">--%>
+
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <title>Dormitory management system</title>
+    <title>Dormitory managment system</title>
 </head>
 <body>
-<%--front/end page for dormitory management CRUD--%>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10">
-
-            <!--  search part on the top -->
+            <!--  Search section on the top  -->
             <div class="panel panel-default">
                 <div class="panel-heading">Search</div>
                 <div class="panel-body">
-                    <form role="form" class="form-inline" action="/dormitoryAdmin/search" method="post">
+                    <form role="form" class="form-inline" action="/dormitory/search" method="post">
                         <div class="form-group">
                             <label for="name">Field：</label>
                             <select name="key" class="form-control">
-                                <option value="username">DormitoryAdmin username</option>
-                                <option value="name">DormitoryAdmin name</option>
-                                <option value="telephone">DormitoryAdmin telephone</option>
+                                <option value="name">Name</option>
+                                <option value="telephone">Telephone</option>
                             </select>
                         </div>
                         <div class="form-group" style="margin-left: 20px">
@@ -47,59 +44,51 @@
                             </button>
                         </div>
                         <div class="form-group " style="margin-left: 48px">
-                            <button type="button" class="btn btn-default"
-                                    data-toggle="modal" data-target="#addUserModal">
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addUserModal">
 										<span style="margin-right: 5px" class="" aria-hidden="true">
-											<i class="fa fa-user-plus">Add DormitoryAdmin information</i>
+											<i class="fa fa-user-plus fa-sm">Add dormitory information</i>
 											</span>
                             </button>
                         </div>
                     </form>
                 </div>
             </div>
-
             <!-- List display-->
             <div class="table-responsive">
                 <table class="table table-hover ">
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Username</th>
-                        <th>Password</th>
+                        <th>Building</th>
                         <th>Name</th>
-                        <th>Sex</th>
-                        <th>Contact telephone</th>
+                        <th>Room Size</th>
+                        <th>Available bed</th>
+                        <th>Telephone</th>
                         <th>Operation</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <c:forEach items="${list}" var="dormitoryAdmin">
+                    <c:forEach items="${list}" var="dormitory">
                         <tr>
-                            <td>${dormitoryAdmin.id}</td>
-                            <td>${dormitoryAdmin.username}</td>
-                            <td>${dormitoryAdmin.password}</td>
-                            <td>${dormitoryAdmin.name}</td>
-                            <td>${dormitoryAdmin.gender}</td>
-                            <td>${dormitoryAdmin.telephone}</td>
+                            <td>${dormitory.id}</td>
+                            <td>${dormitory.buildingName}</td>
+                            <td>${dormitory.name}</td>
+                            <td>${dormitory.type}</td>
+                            <td>${dormitory.available}</td>
+                            <td>${dormitory.telephone}</td>
                             <td>
-<%--     when clicking the modify button at end of each line, pop a new page,  fill the data into the new page --%>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-default "
-                                            data-id="${dormitoryAdmin.id}"
-                                            data-username="${dormitoryAdmin.username}"
-                                            data-password="${dormitoryAdmin.password}"
-                                            data-name="${dormitoryAdmin.name}"
-                                            data-gender="${dormitoryAdmin.gender}"
-                                            data-telephone="${dormitoryAdmin.telephone}"
+                                            data-id="${dormitory.id}"
+                                            data-name="${dormitory.name}"
+                                            data-telephone="${dormitory.telephone}"
                                             data-toggle="modal"
                                             data-target="#updateUserModal">
-<%--              when clicking modify button, go to the method "updateUserModal"  --%>
                                         <i class="fa fa-user-o">Modify</i>
                                     </button>
 
-<%--点击删除按钮， 将对应的id传给删除表单，然后将删除表单提交，ID传给后台controller--%>
                                     <button type="button" class="btn btn-danger "
-                                            data-id="${dormitoryAdmin.id}" data-toggle="modal"
+                                            data-id="${dormitory.id}" data-toggle="modal"
                                             onclick="" data-target="#delUserModal">
                                         <i class="fa fa-user-times">Delete</i>
                                     </button>
@@ -109,9 +98,8 @@
                     </c:forEach>
                     </tbody>
                 </table>
-
-                <!-- add框示例（Modal）  add form  -->
-                <form method="post" action="/dormitoryAdmin/save" class="form-horizontal" style="margin-top: 0px" role="form"
+                <!-- add框示例（Modal） add functionality  -->
+                <form method="post" action="/dormitory/save" class="form-horizontal" style="margin-top: 0px" role="form"
                       id="form_data" style="margin: 20px;">
                     <div class="modal fade" id="addUserModal" tabindex="-1"
                          role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -120,42 +108,40 @@
                                 <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal"
                                             aria-hidden="true">x</button>
-                                    <h4 class="modal-title" id="myModalLabel">Add DormitoryAdmin information</h4>
+                                    <h4 class="modal-title" id="myModalLabel">Add dormitory information</h4>
                                 </div>
                                 <div class="modal-body">
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label for="user_id" class="col-sm-3 control-label">Username</label>
+                                            <label for="user_id" class="col-sm-3 control-label">楼宇</label>
                                             <div class="col-sm-9">
-<%--      name property aligned with property in entity class                                          --%>
-                                                <input type="text" required class="form-control" id="username"
-                                                       name="username" placeholder="Please enter the username">
+                                                <select class="form-control" name="buildingId">
+<%--          buildingList comes from DormitoryController                                --%>
+                                                    <c:forEach items="${buildingList}" var="building">
+                                                        <option value="${building.id}">${building.name}</option>
+                                                    </c:forEach>
+                                                </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="user_id" class="col-sm-3 control-label">Password</label>
+                                            <label for="user_id" class="col-sm-3 control-label">Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" required class="form-control" id="password"
-                                                       name="password" value="" placeholder="Please enter password">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="user_id" class="col-sm-3 control-label">姓名</label>
-                                            <div class="col-sm-9">
+<%--                      input中的name属性的值会被form提交到后台，连同user输入的值，下面例子是name的属性值name和user输入，以name= user input形式提交                          --%>
                                                 <input type="text" required class="form-control" id="name"
                                                        name="name" value="" placeholder="Please enter the name">
                                             </div>
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="user_id" class="col-sm-3 control-label">Sex</label>
+                                            <label for="user_id" class="col-sm-3 control-label">Room size</label>
                                             <div class="col-sm-9">
-                                                <input type="radio" checked value="Man" class="gender"
-                                                       name="gender"> Man
-                                                &nbsp;&nbsp;&nbsp;<input type="radio" value="Woman" class="gender"
-                                                                         name="gender"> Woman
+                                                <select class="form-control" name="type">
+                                                    <option value="4">4</option>
+                                                    <option value="6">6</option>
+                                                    <option value="8">8</option>
+                                                    <option value="10">10</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -163,9 +149,10 @@
                                             <label for="user_id" class="col-sm-3 control-label">Telephone</label>
                                             <div class="col-sm-9">
                                                 <input type="text" required class="form-control" id="telephone"
-                                                       name="telephone" value="" placeholder="Please enter phone number">
+                                                       name="telephone" value="" placeholder="Please enter telephone number">
                                             </div>
                                         </div>
+
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -177,8 +164,8 @@
                     </div>
                 </form>
 
-                <!-- update框示例（Modal）  update funcationality -->
-                <form method="post" action="/dormitoryAdmin/update" class="form-horizontal" style="margin-top: 0px" role="form"
+                <!-- update框示例（Modal） -->
+                <form method="post" action="/dormitory/update" class="form-horizontal" style="margin-top: 0px" role="form"
                       id="form_data" style="margin: 20px;">
                     <div class="modal fade" id="updateUserModal" tabindex="-1"
                          role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -191,27 +178,12 @@
                                 </div>
                                 <div class="modal-body">
                                     <form class="form-horizontal" role="form">
+
                                         <div class="form-group">
                                             <label for="user_id" class="col-sm-3 control-label">ID</label>
                                             <div class="col-sm-9">
-<%--       id only displaying, can not be modified in the update interface  --%>
                                                 <input type="text" readonly required class="form-control" id="id"
                                                        name="id">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="user_id" class="col-sm-3 control-label">Username</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" required class="form-control" id="username"
-                                                       name="username" placeholder="Please enter username">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="user_id" class="col-sm-3 control-label">Password</label>
-                                            <div class="col-sm-9">
-                                                <input type="text" required class="form-control" id="password"
-                                                       name="password" value="" placeholder="Please enter password">
                                             </div>
                                         </div>
 
@@ -219,17 +191,7 @@
                                             <label for="user_id" class="col-sm-3 control-label">Name</label>
                                             <div class="col-sm-9">
                                                 <input type="text" required class="form-control" id="name"
-                                                       name="name" value="" placeholder="Please enter name">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="user_id" class="col-sm-3 control-label">Sex</label>
-                                            <div class="col-sm-9">
-                                                <input type="radio" checked value="Man" class="gender"
-                                                       name="gender"> Man
-                                                &nbsp;&nbsp;&nbsp;<input type="radio" value="Woman" class="gender"
-                                                                         name="gender"> Woman
+                                                       name="name" value="" placeholder="Please enter the name">
                                             </div>
                                         </div>
 
@@ -240,6 +202,7 @@
                                                        name="telephone" value="" placeholder="">
                                             </div>
                                         </div>
+
                                     </form>
                                 </div>
                                 <div class="modal-footer">
@@ -251,8 +214,8 @@
                     </div>
                 </form>
 
-                <!-- 删除模态框示例（Modal） delete form   -->
-                <form method="post" action="/dormitoryAdmin/delete"
+                <!-- delete（Modal） -->
+                <form method="post" action="/dormitory/delete"
                       class="form-horizontal" style="margin-top: 0px" role="form"
                       id="form_data" style="margin: 20px;">
                     <div class="modal fade" id="delUserModal" tabindex="-1"
@@ -268,13 +231,9 @@
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
                                             <div class="col-sm-9">
-                                                <h3 class="col-sm-18 control-label" id="deleteLabel">Delete information</h3>
-
-<%--   name 属性用于在 JavaScript 中引用元素，或者在表单提交后引用表单数据。
-注意：只有设置了 name 属性的表单元素才能在提交表单时传递它们的值。                     --%>
+                                                <h3 class="col-sm-18 control-label" id="deleteLabel">delete information</h3>
                                                 <input type="hidden" class="form-control" id="tab"
-                                                       name="tab" placeholder="" value="dor_admin">
-                                                <input
+                                                       name="tab" placeholder="" value="dor_admin"> <input
                                                     type="hidden" class="form-control" id="id"
                                                     name="id" placeholder="">
                                             </div>
@@ -299,36 +258,24 @@
     $('#updateUserModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
         var id = button.data('id')
-        var username = button.data('username')
-        var password = button.data('password')
         var name = button.data('name')
-        var gender = button.data('gender')
         var telephone = button.data('telephone')
         var modal = $(this)
 
-        modal.find('.modal-title').text('修改宿管信息')
+        modal.find('.modal-title').text('修改宿舍信息')
         modal.find('#id').val(id)
-        modal.find('#username').val(username)
-        modal.find('#password').val(password)
         modal.find('#name').val(name)
-        // 点击修改按钮后，回填数据时，对gender中的数据做判断， 然后选择正确的radio
-        var list = modal.find('.gender')
-        for(var i=0;i<list.length;i++){
-            if(gender == $(list.get(i)).val()){
-                $(list.get(i)).prop('checked',true)
-            }
-        }
         modal.find('#telephone').val(telephone)
-
     })
 
-    // 点击删除按钮，将绑定的id取出
+    //https://www.w3schools.com/jquery/misc_data.asp    for data() method
+
     $('#delUserModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
         var id = button.data('id')
         var modal = $(this)
-        modal.find('.modal-title').text('删除宿管信息')
-        modal.find('#deleteLabel').text('是否删除ID为  ' + id + ' 的信息')
+        modal.find('.modal-title').text('Delete dormitory information')
+        modal.find('#deleteLabel').text('Do you wnat to delete with id:  ' + id)
         modal.find('#id').val(id)
     })
 </script>

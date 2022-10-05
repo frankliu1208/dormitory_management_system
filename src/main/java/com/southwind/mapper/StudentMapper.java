@@ -5,6 +5,7 @@ import com.southwind.entity.Student;
 
 import java.util.List;
 
+// Student management functionality
 // some functions regarding move-out register are also defined here
 public interface StudentMapper {
     public List<Student> list();
