@@ -68,9 +68,8 @@
                             <td>${student.gender}</td>
                             <td>${student.state}</td>
                             <td>
-<%--    data-id, data-dormitory-id, data-toggle是button标签的自定义属性                            --%>
-<%-- data-*为自定义属性名，  这种方式需要在自定义属性名前面加上data-，  一般用于传值                           --%>
-<%--    when clicking the button,  attach the student.id, student.dormitoryid to the button, --%>
+                                <%--    data-id, data-dormitory-id, data-toggle是button标签的自定义属性                            --%>
+                                <%--    when clicking the button,  attach the student.id, student.dormitoryid to the button, --%>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-danger"
                                             data-id="${student.id}"
@@ -146,8 +145,7 @@
 </div>
 </div>
 
-<%--    event 是事件对象   --%>
-
+<%--    event is the event object   --%>
 <script>
     $('#delUserModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)

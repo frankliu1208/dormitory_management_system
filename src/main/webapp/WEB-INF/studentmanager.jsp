@@ -205,14 +205,14 @@
                                                 <select class="form-control" name="dormitoryId">
                                                      <%--  come from studentcontroller,  L33.   nickname is dormitory,    --%>
                                                     <c:forEach items="${dormitoryList}" var="dormitory">
-                                                     <%--  value定义了提交服务器时，Key的值，option标签体中的内容为展示在页面上的内容，提交服务器时为value属性的值= 标签体中的值      --%>
+                                                     <%-- send to backend controller by ${dormitory.id} = ${dormitory.name}.   (value定义了提交服务器时，Key的值，option标签体中的内容为展示在页面上的内容，提交服务器时为value属性的值= 标签体中的值)      --%>
                                                         <option value="${dormitory.id}" class="dormitory">${dormitory.name}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
                                         </div>
-                                        <%--when updating, at the frontend, the original dormitory id also needs to be sent to the backend,  because later the available bed
-                                         of original dormitory needs to be decreased by 1  --%>
+                                        <%--when updating, at the frontend, the original dormitory id also needs to send to the backend,  because later the available bed
+                                        number of original dormitory needs to be decreased by 1,  value of "name property" is aligned with property in Student entity class --%>
                                         <input type="hidden" id="oldDormitoryId" name="oldDormitoryId">
 
                                         <div class="form-group">
@@ -316,7 +316,7 @@
         var time = button.data('time')
         var modal = $(this)
 
-        // find the related tags in the sheet, assign the value getting from the button to the sheet
+        // find the related input tags in the update modal window, fill the data getting from the button to these input tags.
         modal.find('.modal-title').text('Modify student information')
         modal.find('#id').val(id)
         modal.find('#number').val(number)
@@ -344,8 +344,9 @@
     $('#delUserModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
         var id = button.data('id')
-        var dormitoryId = button.data('dormitoryId')
+        var dormitoryId = button.data('dormitoryId') // dormitory id need to send to backend controller, because later the available bed number of dormitory shall add 1
         var modal = $(this)
+
         modal.find('.modal-title').text('Delete student information')
         modal.find('#deleteLabel').text('Do you wnat to delete with id:  ' + id)
         modal.find('#id').val(id)

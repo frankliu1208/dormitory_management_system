@@ -61,9 +61,9 @@ public class StudentServiceImpl implements StudentService {
         try {
             this.studentMapper.update(student);
             if(!student.getDormitoryId().equals(student.getOldDormitoryId())){
-//                decrease 1 for new dormitory
+                //    decrease 1 for new dormitory regarding the available bed number
                 this.dormitoryMapper.subAvailable(student.getDormitoryId());
-                // when submitting, send the original dormitory id to backend
+                // add 1 for old dormitory regarding the available bed number
                 this.dormitoryMapper.addAvailable(student.getOldDormitoryId());
             }
         } catch (Exception e) {

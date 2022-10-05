@@ -34,6 +34,7 @@ public class StudentController {
         return modelAndView;
     }
 
+    // search functionality
     @PostMapping("/search")
     public ModelAndView search(String key,String value){
         ModelAndView modelAndView = new ModelAndView();
@@ -43,19 +44,21 @@ public class StudentController {
         return modelAndView;
     }
 
-    // adding functionality,  comes from studentmanager.jsp L117
+    // adding functionality,  comes from studentmanager.jsp L116
     @PostMapping("/save")
     public String save(Student student){
         this.studentService.save(student);
         return "redirect:/student/list";
     }
 
+    // update functionality,  data comes from studentmanager.jsp L181
     @PostMapping("/update")
     public String update(Student student){
         this.studentService.update(student);
         return "redirect:/student/list";
     }
 
+    // delete function,  get id and dormitory id from the studentmanager.jsp,  use student as parameter to get them.
     @PostMapping("/delete")
     public String delete(Student student){
         this.studentService.delete(student);

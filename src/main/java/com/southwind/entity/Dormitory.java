@@ -10,6 +10,6 @@ public class Dormitory {
     private String buildingName; // this property is different with the one in database
     private String name;
     private Integer type; // the type of the dormitory, i.e.  4-person room..
-    private Integer available; // if the dormitory is full or not
+    private Integer available; // available bed number of a dormitory,  to evaluate if the dormitory is full or not
     private String telephone;
 }

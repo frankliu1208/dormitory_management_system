@@ -98,7 +98,7 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <!-- add框示例（Modal） add functionality  -->
+                <!-- add modal window add functionality  -->
                 <form method="post" action="/dormitory/save" class="form-horizontal" style="margin-top: 0px" role="form"
                       id="form_data" style="margin: 20px;">
                     <div class="modal fade" id="addUserModal" tabindex="-1"
@@ -116,7 +116,7 @@
                                             <label for="user_id" class="col-sm-3 control-label">楼宇</label>
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="buildingId">
-<%--          buildingList comes from DormitoryController                                --%>
+                                                    <%--       buildingList comes from DormitoryController                           --%>
                                                     <c:forEach items="${buildingList}" var="building">
                                                         <option value="${building.id}">${building.name}</option>
                                                     </c:forEach>
@@ -127,7 +127,7 @@
                                         <div class="form-group">
                                             <label for="user_id" class="col-sm-3 control-label">Name</label>
                                             <div class="col-sm-9">
-<%--                      input中的name属性的值会被form提交到后台，连同user输入的值，下面例子是name的属性值name和user输入，以name= user input形式提交                          --%>
+                                                <%--      the value of "name property" in input tag will be sent to backend controller when submitting the form :  value of "name property" = user's input                  --%>
                                                 <input type="text" required class="form-control" id="name"
                                                        name="name" value="" placeholder="Please enter the name">
                                             </div>
@@ -164,7 +164,7 @@
                     </div>
                 </form>
 
-                <!-- update框示例（Modal） -->
+                <!-- update modal window -->
                 <form method="post" action="/dormitory/update" class="form-horizontal" style="margin-top: 0px" role="form"
                       id="form_data" style="margin: 20px;">
                     <div class="modal fade" id="updateUserModal" tabindex="-1"
@@ -214,7 +214,7 @@
                     </div>
                 </form>
 
-                <!-- delete（Modal） -->
+                <!-- delete（Modal） window -->
                 <form method="post" action="/dormitory/delete"
                       class="form-horizontal" style="margin-top: 0px" role="form"
                       id="form_data" style="margin: 20px;">

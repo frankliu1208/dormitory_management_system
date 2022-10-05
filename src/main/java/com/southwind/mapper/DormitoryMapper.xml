@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.southwind.mapper.DormitoryMapper">
 
-<!--    only need to search id, name of the dormitory, because it is used in updating modal of student management section,  in studentmanager.jsp  -->
+    <!--    only need to search id, name of the dormitory, because it is used in updating modal of student management section,  in studentmanager.jsp  -->
     <select id="availableList" resultType="Dormitory">
         select id,name from dormitory where available > 0
     </select>

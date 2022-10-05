@@ -93,7 +93,7 @@
         </div>
 
         <!--content on the right side-->
-        <!-- with src, we can go to the back end, i.e. DormitoryAdminController, fetch the data, then go to adminmanager.jsp-->
+        <!-- with src, we can go to the back-end, i.e. DormitoryAdminController, fetch the data, then go to adminmanager.jsp-->
         <iframe style="width: 81%; height: 600px; border: 0px;" src="/dormitoryAdmin/list"></iframe>
 
     </div>
