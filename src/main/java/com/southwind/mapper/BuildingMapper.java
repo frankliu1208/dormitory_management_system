@@ -5,7 +5,7 @@ import com.southwind.entity.Building;
 import java.util.List;
 
 public interface BuildingMapper {
-    public List<Building> list();
+    public List<Building> list(); // search overall list
     public List<Building> searchByName(String value);
     public List<Building> searchByIntroduction(String value);
     public void save(Building building);

@@ -3,16 +3,16 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<%--Building management front-end page--%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
     <script src="https://kit.fontawesome.com/c2a154e786.js" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Dormitory management system</title>
 </head>
+
 <body>
 <div class="container-fluid">
     <div class="row">

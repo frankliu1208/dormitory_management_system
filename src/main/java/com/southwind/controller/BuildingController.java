@@ -19,16 +19,18 @@ public class BuildingController {
     @Autowired
     private DormitoryAdminService dormitoryAdminService;
 
+    // conduct overall list display
     @GetMapping("/list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("WEB-INF/buildingmanager");
         modelAndView.addObject("list", this.buildingService.list());
-//        admin related info send to front page
+        //   dormitory admin related info send to front page
         modelAndView.addObject("dormitoryAdminList", this.dormitoryAdminService.list());
         return modelAndView;
     }
 
+    // conduct search functions
     @PostMapping("/search")
     public ModelAndView search(String key,String value){
         ModelAndView modelAndView = new ModelAndView();
@@ -38,11 +40,11 @@ public class BuildingController {
         return modelAndView;
     }
 
-//    添加，
+    //    conduct adding functions
     @PostMapping("/save")
     public String save(Building building){
         this.buildingService.save(building);
-//        after successfully add the data, redirect to list(),  load all the data
+        //      after successfully add the data, redirect to list(),  load all the data
         return "redirect:/building/list";
     }
 
@@ -52,10 +54,10 @@ public class BuildingController {
         return "redirect:/building/list";
     }
 
-//   when deleting a buidling, we need also to deal with students and dormitories, which are related to the building
-//    when one building is deleted, the dormitory not exists anymore, but students need to be re/assigned to new dormitory
+    //   when deleting a buidling, we need also to deal with students and dormitories, which are related to the building
+    //    when one building is deleted, the dormitory not exists anymore, but students need to be re/assigned to new dormitory
     @PostMapping("/delete")
-//    get the building id from the front end page
+    //    get the building id from the front end page
     public String delete(Integer id){
         this.buildingService.delete(id);
         return "redirect:/building/list";
