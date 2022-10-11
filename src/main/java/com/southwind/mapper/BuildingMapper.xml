@@ -15,19 +15,22 @@
         select b.id id,b.name name,b.introduction,d.name adminName,d.id adminId from building b,dormitory_admin d where b.admin_id = d.id and b.name like concat('%',#{value},'%')
     </select>
 
-<!--    introduction is one of the title in the list,  introduce the building   -->
+    <!--    introduction is one of the title in the list,  introduce the building   -->
     <select id="searchByIntroduction" resultType="Building">
         select b.id id,b.name name,b.introduction,d.name adminName,d.id adminId from building b,dormitory_admin d where b.admin_id = d.id and b.introduction like concat('%',#{value},'%')
     </select>
 
+    <!--  add new building   -->
     <insert id="save">
         insert into building(name,introduction,admin_id) values(#{name},#{introduction},#{adminId})
     </insert>
 
+    <!--  updating   -->
     <update id="update">
         update building set name = #{name},introduction = #{introduction},admin_id = #{adminId} where id = #{id}
     </update>
 
+    <!-- // delete the building according to building id    -->
     <delete id="delete">
         delete from building where id = #{id}
     </delete>

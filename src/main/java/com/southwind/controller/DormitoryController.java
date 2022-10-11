@@ -47,6 +47,7 @@ public class DormitoryController {
         return modelAndView;
     }
 
+    // Add functionallity
     @PostMapping("/save")
     public String save(Dormitory dormitory){
         this.dormitoryService.save(dormitory);

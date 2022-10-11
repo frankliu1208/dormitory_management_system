@@ -41,6 +41,7 @@ public class BuildingServiceImpl implements BuildingService {
         return list;
     }
 
+    // add new building
     @Override
     public void save(Building building) {
         try {
@@ -50,6 +51,7 @@ public class BuildingServiceImpl implements BuildingService {
         }
     }
 
+    // update the building info
     @Override
     public void update(Building building) {
         try {
@@ -59,30 +61,28 @@ public class BuildingServiceImpl implements BuildingService {
         }
     }
 
+    // delete the building
     @Override
     public void delete(Integer id) {
 
-
-
-
         try {
-            //找到楼宇包含的所有宿舍
+            // find all the related dormitory in the building
             List<Integer> dormitoryIdList = this.dormitoryMapper.findDormitoryIdByBuildingId(id);
-//            Loop the list which includes all the dormitoryid,  for each dormitory id, get the studentId list
+            //    Loop the list which includes all the dormitoryid,  for each dormitory id, get the studentId list
             for (Integer dormitoryId : dormitoryIdList) {
-                //找到宿舍包含的所有学生
+                // find the all related students according to dormitory id,  in studentIdList includes all the student id
                 List<Integer> studentIdList = this.studentMapper.findStudentIdByDormitoryId(dormitoryId);
                 for (Integer studentId : studentIdList) {
                     Integer availableDormitoryId = this.dormitoryMapper.findAvailableDormitoryId();
-                    //学生调换宿舍
+                    //students will change to another dormitory (for one loop only operates one student)
                     this.studentMapper.resetDormitoryId(studentId, availableDormitoryId);
-//  for new dormity, as student moves in,  the available bed number should decrease by one
+                    //  for new dormity, as student moves in,  the available bed number should decrease by one
                     this.dormitoryMapper.subAvailable(availableDormitoryId);
                 }
-                //删除宿舍
+                //  delete the dormitory, because student has already been moved to another dormitory
                 this.dormitoryMapper.delete(dormitoryId);
             }
-// 删除楼宇
+            // delete the building according to building id
             this.buildingMapper.delete(id);
         } catch (Exception e) {
             e.printStackTrace();

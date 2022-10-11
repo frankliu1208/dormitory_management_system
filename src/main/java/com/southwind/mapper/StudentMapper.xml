@@ -34,6 +34,7 @@
         select id from student where dormitory_id = #{dormitoryId}
     </select>
 
+    <!-- modify the dormitory id for the students whose building is being deleted. (so they have to assign to another dormitory    -->
     <update id="resetDormitoryId">
         update student set dormitory_id = #{param2} where id = #{param1}
     </update>

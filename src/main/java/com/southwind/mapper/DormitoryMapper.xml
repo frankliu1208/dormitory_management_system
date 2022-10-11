@@ -7,6 +7,7 @@
         select id,name from dormitory where available > 0
     </select>
 
+    <!-- decrease the number of available bed   -->
     <update id="subAvailable">
         update dormitory set available = available-1 where id = #{id}
     </update>
@@ -15,14 +16,17 @@
         update dormitory set available = available+1 where id = #{id}
     </update>
 
+    <!-- through building id,  we can find the dormitory id    -->
     <select id="findDormitoryIdByBuildingId" resultType="java.lang.Integer">
         select id from dormitory where building_id = #{buildingId}
     </select>
 
+<!--  search for teh dormitory id which has empty beds,  limit means to cut the result and only get the first result in the result list  -->
     <select id="findAvailableDormitoryId" resultType="java.lang.Integer">
         select id from dormitory where available > 0 limit 0,1
     </select>
 
+    <!--  delete the dormitory according to dormitory id  -->
     <delete id="delete">
         delete from dormitory where id = #{id}
     </delete>

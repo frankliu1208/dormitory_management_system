@@ -13,9 +13,12 @@ public interface DormitoryMapper {
     public void subAvailable(Integer id);
     public void addAvailable(Integer id);
 
-//    get dormitory id through buildinig id
+    //  this method is to  get dormitory id by buildinig id
     public List<Integer> findDormitoryIdByBuildingId(Integer buildingId);
+
+    // search for teh dormitory id which has empty beds
     public Integer findAvailableDormitoryId();
+    // delete the dormitory according to dormitory id
     public void delete(Integer id);
     public List<Dormitory> list();
     public List<Dormitory> searchByName(String value);

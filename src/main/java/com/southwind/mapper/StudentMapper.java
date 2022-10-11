@@ -14,7 +14,11 @@ public interface StudentMapper {
     public void save(Student student);
     public void update(Student student);
     public void delete(Integer id);
+
+    // search for student id through dormitory id
     public List<Integer> findStudentIdByDormitoryId(Integer dormitoryId);
+
+    // modify the dormitory id for the students whose building is being deleted. (so they have to assign to another dormitory)
     public void resetDormitoryId(Integer studentId,Integer dormitoryId);
 
 //    used for move-out functionality

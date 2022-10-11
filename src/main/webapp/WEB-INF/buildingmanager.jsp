@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-<%--Building management front-end page--%>
+<%--Building management section front-end page--%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
@@ -50,6 +50,7 @@
                     </form>
                 </div>
             </div>
+
             <!-- List display-->
             <div class="table-responsive">
                 <table class="table table-hover ">
@@ -80,7 +81,7 @@
                                         <i class="fa fa-user-o">Modify</i>
                                     </button>
 
-<%--                                    when cilick deleting,  we can get the buildiing.id  --%>
+<%--    when cilick deleting,  will open delete modal window, data/toggle means it is a modal; data-target points to the id of modal window --%>
                                     <button type="button" class="btn btn-danger "
                                             data-id="${building.id}" data-toggle="modal"
                                             onclick="" data-target="#delUserModal">
@@ -92,7 +93,8 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <!-- add框示例（Modal） -->
+
+                <!-- Modal window: adding new building -->
                 <form method="post" action="/building/save" class="form-horizontal" style="margin-top: 0px" role="form"
                       id="form_data" style="margin: 20px;">
                     <div class="modal fade" id="addUserModal" tabindex="-1"
@@ -145,7 +147,7 @@
                     </div>
                 </form>
 
-                <!-- update框示例（Modal） -->
+                <!-- Modal window: updating  -->
                 <form method="post" action="/building/update" class="form-horizontal" style="margin-top: 0px" role="form"
                       id="form_data" style="margin: 20px;">
                     <div class="modal fade" id="updateUserModal" tabindex="-1"
@@ -207,7 +209,7 @@
                 </form>
 
 
-                <!-- Delete function（Modal） -->
+                <!-- Delete the existing building（Modal window） -->
                 <form method="post" action="/building/delete"
                       class="form-horizontal" style="margin-top: 0px" role="form"
                       id="form_data" style="margin: 20px;">
@@ -277,11 +279,12 @@ When this method is used to set content, it overwrites the content of ALL matche
     })
 
     // https://www.w3schools.com/bootstrap/bootstrap_ref_js_modal.asp
-
+    // get the data from teh button, like L286;
+    // L287 means the modal window itself
     $('#delUserModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
         var id = button.data('id')
-            var modal = $(this)
+        var modal = $(this)
         modal.find('.modal-title').text('delete building information')
         modal.find('#deleteLabel').text('Do you wnat to delete with id:  ' + id )
         modal.find('#id').val(id)

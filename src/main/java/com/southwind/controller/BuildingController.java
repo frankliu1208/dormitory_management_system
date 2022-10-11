@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+
+// this controller is used for building management section
 @Controller
 @RequestMapping("/building")
 public class BuildingController {
@@ -40,11 +42,11 @@ public class BuildingController {
         return modelAndView;
     }
 
-    //    conduct adding functions
+    //   adding new building
     @PostMapping("/save")
     public String save(Building building){
         this.buildingService.save(building);
-        //      after successfully add the data, redirect to list(),  load all the data
+        //  after successfully add the data, redirect to list(),  load all the data
         return "redirect:/building/list";
     }
 
@@ -57,7 +59,7 @@ public class BuildingController {
     //   when deleting a buidling, we need also to deal with students and dormitories, which are related to the building
     //    when one building is deleted, the dormitory not exists anymore, but students need to be re/assigned to new dormitory
     @PostMapping("/delete")
-    //    get the building id from the front end page
+    //   get the building id from the front end page, buildingmanager.jsp
     public String delete(Integer id){
         this.buildingService.delete(id);
         return "redirect:/building/list";
