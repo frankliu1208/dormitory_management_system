@@ -18,12 +18,19 @@ public interface DormitoryMapper {
 
     // search for teh dormitory id which has empty beds
     public Integer findAvailableDormitoryId();
+
     // delete the dormitory according to dormitory id
     public void delete(Integer id);
+
+    // display the list
     public List<Dormitory> list();
     public List<Dormitory> searchByName(String value);
     public List<Dormitory> searchByTelephone(String value);
+
+    // adding functionality
     public void save(Dormitory dormitory);
+
+    // modifying the dormitory
     public void update(Dormitory dormitory);
     public List<Dormitory> findByBuildingId(Integer buildingId);
 }

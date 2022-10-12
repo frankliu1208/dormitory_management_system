@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * dormitory administration management controller
+ * dormitory administration management section
  */
 @Controller
 @RequestMapping("/dormitoryAdmin")

@@ -31,6 +31,7 @@
         delete from dormitory where id = #{id}
     </delete>
 
+    <!--  display the list    -->
     <select id="list" resultType="Dormitory">
         select d.id,b.name buildingName,d.name name,d.type,d.available,d.telephone from dormitory d,building b where d.building_id = b.id
     </select>
@@ -40,9 +41,10 @@
     </select>
 
     <select id="searchByTelephone" resultType="Dormitory">
-        select d.id,b.name buildingName,d.name name,d.type,d.available,d.telephone from dormitory d,building b where d.building_id = b.id and d.telephone like concat('%',#{value},'%')
+        select d.id, b.name buildingName, d.name name, d.type, d.available, d.telephone from dormitory d,building b where d.building_id = b.id and d.telephone like concat('%',#{value},'%')
     </select>
 
+    <!--   adding functionality   -->
     <insert id="save">
         insert into dormitory(building_id,name,type,available,telephone) values(#{buildingId},#{name},#{type},#{type},#{telephone})
     </insert>

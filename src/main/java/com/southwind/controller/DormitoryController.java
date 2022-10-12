@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 
+// dormitory management section
 @Controller
 @RequestMapping("/dormitory")
 public class DormitoryController {
@@ -34,7 +35,7 @@ public class DormitoryController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("WEB-INF/dormitorymanager");
         modelAndView.addObject("list", this.dormitoryService.list());
-        modelAndView.addObject("buildingList", this.buildingService.list());
+        modelAndView.addObject("buildingList", this.buildingService.list()); // when conducting adding new dormitory, building info is needed. it shall send to the front-end
         return modelAndView;
     }
 
@@ -47,19 +48,21 @@ public class DormitoryController {
         return modelAndView;
     }
 
-    // Add functionallity
+    // Adding functionallity
     @PostMapping("/save")
     public String save(Dormitory dormitory){
         this.dormitoryService.save(dormitory);
         return "redirect:/dormitory/list";
     }
 
+    // modifying the dormitory
     @PostMapping("/update")
     public String update(Dormitory dormitory){
         this.dormitoryService.update(dormitory);
         return "redirect:/dormitory/list";
     }
 
+    // delete functionality
     @PostMapping("/delete")
     public String update(Integer id){
         this.dormitoryService.delete(id);

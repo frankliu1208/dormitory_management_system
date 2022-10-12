@@ -7,6 +7,7 @@ import java.util.List;
 
 // Building management
 public interface BuildingService {
+
     public List<Building> list();
     public List<Building> search(String key,String value);
 

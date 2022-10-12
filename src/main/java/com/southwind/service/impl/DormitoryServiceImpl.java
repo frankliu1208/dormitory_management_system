@@ -33,8 +33,9 @@ public class DormitoryServiceImpl implements DormitoryService {
     public List<Dormitory> search(String key, String value) {
         if(value.equals("")) return this.dormitoryMapper.list();
         List<Dormitory> list = null;
+
         switch (key){
-            case "name":
+            case "name":  // related to L31-32 in dormitorymanager.jsp
                 list = this.dormitoryMapper.searchByName(value);
                 break;
             case "telephone":
@@ -44,6 +45,7 @@ public class DormitoryServiceImpl implements DormitoryService {
         return list;
     }
 
+    // adding functionality
     @Override
     public void save(Dormitory dormitory) {
         try {
@@ -53,6 +55,7 @@ public class DormitoryServiceImpl implements DormitoryService {
         }
     }
 
+    // modifying the dormitory
     @Override
     public void update(Dormitory dormitory) {
         try {
@@ -62,9 +65,11 @@ public class DormitoryServiceImpl implements DormitoryService {
         }
     }
 
+    // delete functioinality
     @Override
     public void delete(Integer id) {
         try {
+            // find student id according to the dormitory id, because student need to be moved out when deleting the dormitory
             List<Integer> studentIdList = this.studentMapper.findStudentIdByDormitoryId(id);
             for (Integer studentId : studentIdList) {
                 Integer availableDormitoryId = this.dormitoryMapper.findAvailableDormitoryId();

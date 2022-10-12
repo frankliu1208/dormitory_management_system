@@ -11,8 +11,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c2a154e786.js" crossorigin="anonymous"></script>
 
-<%--    <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">--%>
-
+    <%-- <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">--%>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <title>Dormitory managment system</title>
 </head>
@@ -20,6 +19,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-10">
+
             <!--  Search section on the top  -->
             <div class="panel panel-default">
                 <div class="panel-heading">Search</div>
@@ -53,7 +53,8 @@
                     </form>
                 </div>
             </div>
-            <!-- List display-->
+
+            <!-- List displaying -->
             <div class="table-responsive">
                 <table class="table table-hover ">
                     <thead>
@@ -98,7 +99,8 @@
                     </c:forEach>
                     </tbody>
                 </table>
-                <!-- add modal window add functionality  -->
+
+                <!-- add modal window, adding functionality  -->
                 <form method="post" action="/dormitory/save" class="form-horizontal" style="margin-top: 0px" role="form"
                       id="form_data" style="margin: 20px;">
                     <div class="modal fade" id="addUserModal" tabindex="-1"
@@ -113,7 +115,7 @@
                                 <div class="modal-body">
                                     <form class="form-horizontal" role="form">
                                         <div class="form-group">
-                                            <label for="user_id" class="col-sm-3 control-label">楼宇</label>
+                                            <label for="user_id" class="col-sm-3 control-label">Building</label>
                                             <div class="col-sm-9">
                                                 <select class="form-control" name="buildingId">
                                                     <%--       buildingList comes from DormitoryController                           --%>
@@ -127,7 +129,7 @@
                                         <div class="form-group">
                                             <label for="user_id" class="col-sm-3 control-label">Name</label>
                                             <div class="col-sm-9">
-                                                <%--      the value of "name property" in input tag will be sent to backend controller when submitting the form :  value of "name property" = user's input                  --%>
+                                                <%--  the value of "name property" in input tag will be sent to backend controller when submitting the form :  value of "name property" = user's input                  --%>
                                                 <input type="text" required class="form-control" id="name"
                                                        name="name" value="" placeholder="Please enter the name">
                                             </div>
@@ -262,7 +264,7 @@
         var telephone = button.data('telephone')
         var modal = $(this)
 
-        modal.find('.modal-title').text('修改宿舍信息')
+        modal.find('.modal-title').text('Modify dormitory information')
         modal.find('#id').val(id)
         modal.find('#name').val(name)
         modal.find('#telephone').val(telephone)
