@@ -21,18 +21,20 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDto login(AccountForm accountForm) {
-        AccountDto dto = new AccountDto<>();  // can add systemadmin type or dormitoryadmin type
+
+        AccountDto dto = new AccountDto<>();
 
         //check the user type in switch, in the front-end, user choose "sys admin" or "dorm admin" in the login.jsp in the radio tag
         switch (accountForm.getType()){
-            case "systemAdmin":  // come from login.jsp  L 39 -42,  go to different page according to different type
+            case "systemAdmin":  // come from login.jsp  L 38 -  45,  go to different page according to different type
+
                 SystemAdmin systemAdmin = this.systemAdminMapper.findByUsername(accountForm.getUsername()); // get the user info from database
                 // check if username is correct or not
                 if(systemAdmin == null){
                     dto.setCode(-1);  // wrong username
                 } else {
                     // check password
-                    if(!systemAdmin.getPassword().equals(accountForm.getPassword())){  // the info from accountForm comes from the front-end, user makes input in the login.jsp
+                    if(!systemAdmin.getPassword().equals(accountForm.getPassword())){  // the info from accountForm comes from the front-end, user enters the password in the login.jsp, user's input kept in accountForm object
                         dto.setCode(-2);  // password is wrong
                     } else {  // password correct
                         dto.setCode(0);
@@ -40,7 +42,8 @@ public class AccountServiceImpl implements AccountService {
                     }
                 }
                 break;
-            case "dormitoryAdmin":   // come from login.jsp  L 39 -42
+
+            case "dormitoryAdmin":   // come from login.jsp  L 38 - 45
                 DormitoryAdmin dormitoryAdmin = this.dormitoryAdminMapper.findByUserName(accountForm.getUsername());
                 if(dormitoryAdmin == null){
                     dto.setCode(-1); // wrong username
@@ -49,7 +52,7 @@ public class AccountServiceImpl implements AccountService {
                         dto.setCode(-2);  // wrong password
                     } else {
                         dto.setCode(0);  // correct password
-                        dto.setAdmin(dormitoryAdmin); // set the "dormitoryAdmin" to the property Admin of the AccountDto
+                        dto.setAdmin(dormitoryAdmin); // set the "dormitoryAdmin" to the property " Admin " of the AccountDto
                     }
                 }
                 break;

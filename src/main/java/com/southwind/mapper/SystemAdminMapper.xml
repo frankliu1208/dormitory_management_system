@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.southwind.mapper.SystemAdminMapper">
 
-<!--    in resultType,  the standard package name has been configured in config.xml L12-->
+<!--  in resultType,  the standard package name has been configured in config.xml L12  -->
+<!--  #{username} comes from AccountServiceimpl.java L31  -->
     <select id="findByUsername" resultType="SystemAdmin">
         select * from system_admin where username = #{username}
     </select>

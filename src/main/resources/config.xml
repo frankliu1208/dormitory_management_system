@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+<!--  mybatis configuration files   -->
     <settings>
         <!--  print the SQL  -->
         <setting name="logImpl" value="STDOUT_LOGGING" />
     </settings>
 
-        <!--  configure the package name -->
+        <!-- scan the package,  assign a nick name for every entity class within the package, the nick name will be the class name-->
 <!--    https://www.jianshu.com/p/fcf3ed0a10d1  regarding typealiase  -->
     <typeAliases>
         <package name="com.southwind.entity"/>

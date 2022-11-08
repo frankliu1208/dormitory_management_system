@@ -20,12 +20,13 @@
 <body>
 <div class="container">
     <div class="form row" style="height: 300px;">
-        <%--  the form will send to AccountController      --%>
+        <%--  the form will send to AccountController   --%>
         <form class="form-horizontal col-md-offset-3" id="login_form" action="/account/login" method="post">
             <h3 class="form-title">User Login</h3>
             <div class="col-md-9">
                 <div class="form-group">
                     <i class="fa-solid fa-user fa-sm"></i>
+                    <%--  usernameError comes from AccountController.java  --%>
                     <span style="color: red;font-size: 13px;  margin-left: -2px;">${usernameError}</span>
                     <input class="form-control required" required placeholder="Please enter the username" type="text" name="username"/>
                 </div>

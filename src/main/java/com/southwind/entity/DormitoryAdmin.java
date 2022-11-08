@@ -2,7 +2,7 @@ package com.southwind.entity;
 
 import lombok.Data;
 
-// entity class
+// entity class for dormitory admin
 // lombok is a plugin, do not need to write get/set
 @Data
 public class DormitoryAdmin {

@@ -86,6 +86,7 @@ public class StudentServiceImpl implements StudentService {
         return this.studentMapper.moveoutList();
     }
 
+    // search functions for move-out students
     @Override
     public List<Student> searchForMoveoutList(String key, String value) {
         if(value.equals("")) return this.studentMapper.moveoutList();
@@ -101,15 +102,16 @@ public class StudentServiceImpl implements StudentService {
         return list;
     }
 
+    // move-out register
     @Override
     public void moveout(Moveout moveout) {
         try {
-            this.dormitoryMapper.addAvailable(moveout.getDormitoryId());
+            this.dormitoryMapper.addAvailable(moveout.getDormitoryId()); // add available bed number when a student moves out
             this.studentMapper.updateStateById(moveout.getStudentId());
             Date date = new Date();
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             moveout.setCreateDate(format.format(date));
-            this.studentMapper.moveout(moveout);
+            this.studentMapper.moveout(moveout); // add moveout info in the list
         } catch (Exception e) {
             e.printStackTrace();
         }

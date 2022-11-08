@@ -84,7 +84,14 @@
 							<i class="fa fa-bookmark fa-fw" ></i>
 						</span>Moveout record
             </a>
-            <a href="javascript:void(0)" class="list-group-item" onclick="change('absent/list',6)">
+
+            <a href="javascript:void(0)" class="list-group-item" onclick="change('absent/init',6)">
+						<span class="" aria-hidden="true">
+							<i class="fa fa-bookmark-o fa-fw" ></i>
+						</span>Student absence register
+            </a>
+
+            <a href="javascript:void(0)" class="list-group-item" onclick="change('absent/list',7)">
 						<span class="" aria-hidden="true">
 							<i class="fa fa-bookmark-o fa-fw" ></i>
 						</span>Student absence record

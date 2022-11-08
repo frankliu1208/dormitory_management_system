@@ -16,12 +16,13 @@
     <context:component-scan base-package="com.southwind"></context:component-scan>
 
     <!-- configure view resolver -->
-<!--    处理器方法返回的字符串可以指定逻辑视图名，通过视图解析器解析可以将其转换为物理视图地址-->
+<!--   transfer the logic view into physical view address using  viewresolver   -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
 
+<!-- due to the reason in dormitorycontroller.java L74   -->
     <mvc:annotation-driven >
         <mvc:message-converters register-defaults="true">
             <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4"/>

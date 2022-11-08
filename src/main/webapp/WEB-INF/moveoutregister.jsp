@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <%--student move-out registger section     --%>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
@@ -44,6 +45,7 @@
                     </form>
                 </div>
             </div>
+
             <!-- List display-->
             <div class="table-responsive">
                 <table class="table table-hover ">
@@ -68,8 +70,9 @@
                             <td>${student.gender}</td>
                             <td>${student.state}</td>
                             <td>
-                                <%--    data-id, data-dormitory-id, data-toggle是button标签的自定义属性                            --%>
-                                <%--    when clicking the button,  attach the student.id, student.dormitoryid to the button, --%>
+                                <%--    data-id, data-dormitory-id, data-toggle defined that when clicking "move-out" button, a modal window will be opened                       --%>
+                                <%--    when clicking the button,  attach the student.id, student.dormitoryid to the button, will be got in L148-149--%>
+                                <%-- dormitoryId will be attached to the modal window, but in the hidden input tag, then will be sent to back-end    --%>
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-danger"
                                             data-id="${student.id}"
@@ -86,11 +89,9 @@
                 </table>
 
 
-                <!-- （Modal） delete function -->
-                <%-- below is the pop-out box when user clicks move-out button --%>
-                <form method="post" action="/moveout/register"
-                      class="form-horizontal" style="margin-top: 0px" role="form"
-                      id="form_data" style="margin: 20px;">
+                <!-- Modal window for student move-out pop-out window, realizing deleting function -->
+                <%-- pop-out box when user clicks move-out button --%>
+                <form method="post" action="/moveout/register" class="form-horizontal" style="margin-top: 0px" role="form" id="form_data" style="margin: 20px;">
 
                     <div class="modal fade" id="delUserModal" tabindex="-1"
                          role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -103,15 +104,11 @@
                                 </div>
                                 <div class="modal-body">
                                     <form class="form-horizontal" role="form">
-
                                         <div class="form-group">
                                             <div class="col-sm-9">
                                                 <h3 class="col-sm-18 control-label" id="deleteLabel">Delete information</h3>
-                                                <input type="hidden" class="form-control" id="tab"
-                                                       name="tab" placeholder="" value="dor_admin">
-                                                <input
-                                                    type="hidden" class="form-control" id="id"
-                                                    name="studentId" placeholder="">
+                                                <input type="hidden" class="form-control" id="tab" name="tab" placeholder="" value="dor_admin">
+                                                <input type="hidden" class="form-control" id="id" name="studentId" placeholder="">
                                                 <input type="hidden" id="dormitoryId" name="dormitoryId">
                                             </div>
                                         </div>
@@ -119,8 +116,7 @@
                                         <div class="form-group">
                                             <label for="user_id" class="col-sm-3 control-label">Move-out reason</label>
                                             <div class="col-sm-9">
-                                                <input type="text" required class="form-control"
-                                                       name="reason">
+                                                <input type="text" required class="form-control" name="reason">
                                             </div>
                                         </div>
 
@@ -145,17 +141,17 @@
 </div>
 </div>
 
-<%--    event is the event object   --%>
+
 <script>
     $('#delUserModal').on('show.bs.modal', function(event) {
         var button = $(event.relatedTarget)
-        var id = button.data('id')  // get the property value of "id"
-        var dormitoryId = button.data('dormitory-id')  // get the property value of "dormitory-id"
+        var id = button.data('id')  // get the property value of "id", L77
+        var dormitoryId = button.data('dormitory-id')  // get the property value of "dormitory-id" L78
         var modal = $(this)
-        //find() 方法返回被选元素的后代元素。
-        modal.find('.modal-title').text('student move-out register')  // the text go to L105
-        modal.find('#deleteLabel').text('move out the student with id:  ' + id )  // the text go to L112
-        // put the id, dormitoryId data to the hidden tag, then when clicking ok, send to the back end
+
+        modal.find('.modal-title').text('student move-out register')  // the text go to L103
+        modal.find('#deleteLabel').text('move out the student with id:  ' + id )  // the text go to L109
+        // when opening the modal window, put the id, dormitoryId data to the hidden tag, L111 - 112 then when clicking ok, send to the back-end
         modal.find('#id').val(id)
         modal.find('#dormitoryId').val(dormitoryId)
     })

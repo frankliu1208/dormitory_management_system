@@ -13,7 +13,11 @@ public interface StudentService {
     public void update(Student student);
     public void delete(Student student);
     public List<Student> moveoutList();
+
+    // search functions for move-out students
     public List<Student> searchForMoveoutList(String key,String value);
+
+    // move-out register
     public void moveout(Moveout moveout);
     public List<Student> findByDormitoryId(Integer dormitoryId);
 }

@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%--  absence register page, for sys admin and dormitory admin   --%>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
@@ -93,15 +94,18 @@
     </form>
 </div>
 <script>
+<%-- if the building no. is changed, related dormitory and student shall also be changed   --%>
     $(function(){
-        $('#building').change(function(){
-            var id = $(this).val();
+        $('#building').change(function(){  // when the building no. changes, then implement this function
+            var id = $(this).val();  // get the actual building No.
+            // send request to back end, dormitorycontroller
             $.ajax({
                 url:"/dormitory/findByBuildingId?buildingId="+id,
                 type:"post",
                 contentType:"application/json;charset=UTF-8",
                 dataType:"text",
                 success:function (data) {
+                    //  data is a list, from dormitorycontroller L80 - 86,  this list includes 2 lists inside
                     var list = eval("("+data+")")
                     var dormitoryList = list[0];
                     var studentList = list[1];
@@ -111,6 +115,7 @@
                         str += '<option value="'+dormitory.id+'">'+dormitory.name+'</option>'
                     }
                     $('#dormitory').html(str);
+
                     str = '';
                     for(var i = 0;i<studentList.length;i++){
                         var student = $(studentList).get(i);

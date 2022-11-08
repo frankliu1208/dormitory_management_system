@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+// student move-out register section
 @Controller
 @RequestMapping("/moveout")
 public class MoveoutController {
@@ -19,6 +20,7 @@ public class MoveoutController {
     @Autowired
     private MoveoutService moveoutService;
 
+    // display the overall list
     @GetMapping("/list")
     public ModelAndView list(){
         ModelAndView modelAndView = new ModelAndView();
@@ -27,6 +29,7 @@ public class MoveoutController {
         return modelAndView;
     }
 
+    // search functions
     @PostMapping("/search")
     public ModelAndView search(String key,String value){
         ModelAndView modelAndView = new ModelAndView();
@@ -35,12 +38,14 @@ public class MoveoutController {
         return modelAndView;
     }
 
+    // move-out register
     @PostMapping("/register")
     public String register(Moveout moveout){
         this.studentService.moveout(moveout);
         return "redirect:/moveout/list";
     }
 
+    // move-out record
     @GetMapping("/record")
     public ModelAndView record(){
         ModelAndView modelAndView = new ModelAndView();

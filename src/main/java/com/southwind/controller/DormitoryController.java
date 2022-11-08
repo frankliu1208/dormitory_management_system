@@ -69,6 +69,7 @@ public class DormitoryController {
         return "redirect:/dormitory/list";
     }
 
+    // return the list to front-end absentregister.jsp.
     @PostMapping("/findByBuildingId")
     @ResponseBody
     public List findByBuildingId(Integer buildingId){
@@ -78,10 +79,10 @@ public class DormitoryController {
             List<Student> studentList = this.studentService.findByDormitoryId(dormitoryList.get(0).getId());
             list.add(dormitoryList);
             list.add(studentList);
-        } else {
+        } else { // the dormitory is empty, then define 2 empty list, and put them into list
             list.add(new ArrayList<>());
             list.add(new ArrayList<>());
         }
-        return list;
+        return list;  // includes 2 elements, one is dormitoryList, two is studentList
     }
 }

@@ -21,11 +21,20 @@ public interface StudentMapper {
     // modify the dormitory id for the students whose building is being deleted. (so they have to assign to another dormitory)
     public void resetDormitoryId(Integer studentId,Integer dormitoryId);
 
-//    used for move-out functionality
+    //    used for move-out functionality
     public List<Student> moveoutList();
+
+    // search functions in move-out management section
     public List<Student> searchForMoveoutByNumber(String value);
+
+    // search functions in move-out management section
     public List<Student> searchForMoveoutByName(String value);
+
+    // update the state of a student when he moves out
     public void updateStateById(Integer id);
+
+    // add moveout info in the list
     public void moveout(Moveout moveout);
+
     public List<Student> findByDormitoryId(Integer dormitoryId);
 }

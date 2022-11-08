@@ -39,25 +39,27 @@
         update student set dormitory_id = #{param2} where id = #{param1}
     </update>
 
-<!--    Student move out list , the alias for dormitory_id is dormitoryId, which is aligned with Student entity class -->
+<!--    Student move-out list , the alias for dormitory_id is dormitoryId, which is aligned with Student entity class -->
     <select id="moveoutList" resultType="Student">
         select s.id,  s.number,  s.name name,  s.gender, s.dormitory_id dormitoryId, d.name dormitoryName,s.state from student s,dormitory d where s.dormitory_id = d.id and s.state = 'Move in'
     </select>
 
-<!--    search function in moveout list  -->
+<!--    search function in move-out management section  -->
     <select id="searchForMoveoutByNumber" resultType="Student">
         select s.id,s.number,s.name name,s.gender,s.dormitory_id dormitoryId,d.name dormitoryName,s.state from student s,dormitory d where s.dormitory_id = d.id and s.state = 'Move in' and s.number like concat('%',#{value},'%')
     </select>
 
-    <!--    search function in moveout list  -->
+    <!--    search function in move-out management section  -->
     <select id="searchForMoveoutByName" resultType="Student">
         select s.id,s.number,s.name name,s.gender,s.dormitory_id dormitoryId,d.name dormitoryName,s.state from student s,dormitory d where s.dormitory_id = d.id and s.state = 'Move in' and s.name like concat('%',#{value},'%')
     </select>
 
+    <!-- update the state of a student when he moves out     -->
     <update id="updateStateById">
         update student set state = 'Move out' where id = #{id}
     </update>
 
+    <!--  add moveout info in the list  -->
     <insert id="moveout">
         insert into moveout(student_id,dormitory_id,reason,create_date) values(#{studentId},#{dormitoryId},#{reason},#{createDate})
     </insert>

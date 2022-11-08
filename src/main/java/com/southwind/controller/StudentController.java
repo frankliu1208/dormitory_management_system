@@ -65,6 +65,7 @@ public class StudentController {
         return "redirect:/student/list";
     }
 
+    //  related to absentregister.jsp  L132
     @PostMapping("/findByDormitoryId")
     @ResponseBody
     public List<Student> findByDormitoryId(Integer dormitoryId){

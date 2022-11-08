@@ -2,7 +2,7 @@ package com.southwind.entity;
 
 import lombok.Data;
 
-// student management  entity class
+//  entity class used for student management
 @Data
 public class Student {
     private Integer id;

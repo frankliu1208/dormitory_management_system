@@ -19,12 +19,10 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/account")
 public class AccountController {
-
     @Autowired
     private AccountService accountService;
 
-    // login functionality
-    // the parameters of login method are from the front-end user input, are packed into an object accountForm
+    // login functionality,  the parameters of login method are from the front-end user input, are packed into an object accountForm
     @PostMapping("/login")
     public ModelAndView login(AccountForm accountForm, HttpSession session){
         AccountDto accountDto = this.accountService.login(accountForm); // after implementing this line, accountDto has the values for its two properties, code and admin
